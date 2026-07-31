@@ -4,14 +4,14 @@ const path=require('path');
 const db=require('./database/db');
 
 
-const app=express();
+const server=express();
 const PORT=3000;
 
-app.use(express.json());
+server.use(express.json());
 
-app.use(express.static(path.join(__dirname,'public')));
+server.use(express.static(path.join(__dirname,'public')));
 
-app.get('/productos',(req,res)=>{
+server.get('/productos',(req,res)=>{
 
  db.all('SELECT * FROM productos',(err,rows)=>{
         if(err){
@@ -25,7 +25,7 @@ app.get('/productos',(req,res)=>{
 });
 
 
-app.get('/productos/:id',(req,res)=>{
+server.get('/productos/:id',(req,res)=>{
     const {id}=req.params;
     db.get('SELECT * FROM productos WHERE id=?',[id],(err,row)=>{
         if(err){
@@ -40,7 +40,7 @@ app.get('/productos/:id',(req,res)=>{
     });
 });
 
-app.post('/productos',(req,res)=>{
+server.post('/productos',(req,res)=>{
     const {nombre,precio,stock,categoria}=req.body;
     db.run('INSERT INTO productos (nombre,precio,stock,categoria) VALUES (?,?,?,?)',[nombre,precio,stock,categoria],(err)=>{
         if(err){
@@ -52,7 +52,7 @@ app.post('/productos',(req,res)=>{
     });
 });
 
-app.put('/productos/:id',(req,res)=>{
+server.put('/productos/:id',(req,res)=>{
     const {id}=req.params;
     const {nombre,precio,stock,categoria}=req.body;
     db.run('UPDATE productos SET nombre=?,precio=?,stock=?,categoria=? WHERE id=?',[nombre,precio,stock,categoria,id],(err)=>{
@@ -65,7 +65,7 @@ app.put('/productos/:id',(req,res)=>{
     });
 });
 
-app.delete('/productos/:id',(req,res)=>{
+server.delete('/productos/:id',(req,res)=>{
     const {id}=req.params;
     db.run('DELETE FROM productos WHERE id=?',[id],(err)=>{
         if(err){
@@ -77,7 +77,7 @@ app.delete('/productos/:id',(req,res)=>{
     });
 });
 
-app.listen(PORT,()=>{
+server.listen(PORT,()=>{
     console.log(`EL servidor esta corriendo en http://localhost:${PORT}`);
 }   );
 
