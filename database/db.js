@@ -1,26 +1,33 @@
 const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
 
-const dbPath = path.join(__dirname, 'productos.db');
+const dbPath = path.resolve(__dirname, 'productos.db');
 
 const db = new sqlite3.Database(dbPath, (err) => {
-    if (err) {
-        console.error(err.message);
-        return;
-    
-    }
-    console.log('Connected to the database');
+  if (err) {
+    console.error('Error opening database:', err.message);
+    } else {
 
-    db.run('CREATE TABLE IF NOT EXISTS productos (id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, precio REAL, stock INTEGER, categoria TEXT)' , (err) => {
-        if (err) {
-            console.error(err.message);
-            return;
-            
+    console.log('Connected to the SQLite database.');
+
+    db.run(`CREATE TABLE IF NOT EXISTS productos (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      nombre TEXT NOT NULL,
+        stock INTEGER NOT NULL,
+        precio REAL NOT NULL,
+        categoria TEXT NOT NULL
+    )`, (err) => {
+      if (err) {
+        console.error('Error creating table:', err.message);
+        } else {
+
+        console.log('Table "libros" created or already exists.');
         }
-        console.log('Tabla de animales creada o ya existe');
-    } 
-);
-
-
+    });
+  }
 });
-module.exports=db;
+
+
+
+module.exports = db;
+

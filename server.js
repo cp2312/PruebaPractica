@@ -1,10 +1,11 @@
-const express = require('express');
+
 const express=require('express');
 const path=require('path');
 const db=require('./database/db');
 
 
 const server=express();
+
 const PORT=3000;
 
 server.use(express.json());
