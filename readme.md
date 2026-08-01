@@ -26,7 +26,7 @@ npm install express sqlite3
 node server.js
 
 
-5. Abrir el navegador y entrar a:
+3. Abrir el navegador y entrar a:
 
 
 http://localhost:3000
@@ -51,4 +51,4 @@ Elegí Node.js y Express porque son las herramientas con las que más he trabaja
 ## Dificultad
 
 **Fue pan comido.**
->>>>>>> dev
+
