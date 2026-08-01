@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-instalaciones 
-npm express
-=======
+
 # CRUD de Productos
 
 Este proyecto consiste en un CRUD de productos desarrollado con Node.js, Express y SQLite. Permite agregar, consultar, actualizar y eliminar productos de una base de datos.
