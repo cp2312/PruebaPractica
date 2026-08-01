@@ -18,10 +18,10 @@ const db = new sqlite3.Database(dbPath, (err) => {
         categoria TEXT NOT NULL
     )`, (err) => {
       if (err) {
-        console.error('Error creating table:', err.message);
+        console.error('Error creando tablas:', err.message);
         } else {
 
-        console.log('Table "libros" created or already exists.');
+        console.log('Table "productos" created or already exists.');
         }
     });
   }
